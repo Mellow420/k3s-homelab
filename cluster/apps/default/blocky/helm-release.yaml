@@ -65,12 +65,12 @@ spec:
           # - tcp-tls:dns.quad9.net:853
       conditional:
         mapping:
-          ${SECRET_DOMAIN}: tcp+udp:192.168.1.220
+          ${SECRET_DOMAIN}: tcp+udp:192.168.1.1
       customDNS:
         mapping:
           k8s.${SECRET_DOMAIN}: 10.10.5.5
       clientLookup:
-        upstream: tcp+udp:192.168.1.220
+        upstream: tcp+udp:192.168.1.1
       bootstrapDns: tcp+udp:1.1.1.1
       blocking:
         blackLists:
