@@ -87,3 +87,8 @@ spec:
           default:
             - ads
             - fakenews
+      prometheus:
+        enable: true
+        path: /metrics
+      httpPort: 4000
+      logLevel: info
