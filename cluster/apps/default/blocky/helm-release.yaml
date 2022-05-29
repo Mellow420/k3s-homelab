@@ -56,10 +56,6 @@ spec:
             port: 53
             protocol: UDP
             targetPort: 53
-    metrics:
-      enabled: true
-      prometheusRule:
-        enabled: true
     podAnnotations:
       configmap.reloader.stakater.com/reload: "blocky-config"
     config: |
