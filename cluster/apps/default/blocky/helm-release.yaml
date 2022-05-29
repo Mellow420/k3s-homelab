@@ -21,7 +21,7 @@ spec:
       tag: v0.18
     controller:
       enabled: true
-      replicas: 0
+      replicas: 1
       strategy: RollingUpdate
     env:
       TZ: "Europe/Amsterdam"
