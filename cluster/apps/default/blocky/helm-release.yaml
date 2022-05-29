@@ -31,7 +31,7 @@ spec:
         type: LoadBalancer
         annotations:
           metallb.universe.tf/allow-shared-ip: blocky
-          metallb.universe.tf/loadBalancerIPs: "${LB_BLOCKY}"
+          metallb.universe.tf/loadBalancerIPs: "192.168.1.222"
         externalTrafficPolicy: Local
         ports:
           http:
@@ -43,7 +43,7 @@ spec:
         type: LoadBalancer
         annotations:
           metallb.universe.tf/allow-shared-ip: blocky
-          metallb.universe.tf/loadBalancerIPs: "${LB_BLOCKY}"
+          metallb.universe.tf/loadBalancerIPs: "192.168.1.222"
         externalTrafficPolicy: Local
         ports:
           tcp:
