@@ -65,7 +65,7 @@ spec:
           # - tcp-tls:dns.quad9.net:853
       conditional:
         mapping:
-          ${SECRET_DOMAIN}: tcp+udp:${BOOTSTRAP_METALLB_K8S_GATEWAY_ADDR}
+          ${SECRET_DOMAIN}: tcp+udp:192.168.1.220
       customDNS:
         mapping:
           k8s.${SECRET_DOMAIN}: 10.10.5.5
