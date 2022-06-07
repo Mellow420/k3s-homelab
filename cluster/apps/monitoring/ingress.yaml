@@ -1,19 +1,29 @@
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  name: grafana
+  name: kube-prometheus-grafana
   namespace: monitoring
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    hajimari.io/appName: "grafana"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "web"
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    traefik.ingress.kubernetes.io/router.middlewares: "networking-internal-only@kubernetescrd"
 spec:
-  entryPoints:
-    - websecure
-  routes:
-    - kind: Rule
-      match: Host('grafana.schlepper.cloud')
-      priority: 1
-      services:
-        - kind: Service
-          name: kube-prometheus-grafana
-          port: 3000
+  ingressClassName: "traefik"
   tls:
-    secretName: kube-prometheus-grafana-tls
+    - hosts:
+        - "grafana.${SECRET_DOMAIN}"
+      secretName: "kube-prometheus-grafana-tls"
+  rules:
+    - host: "grafana.${SECRET_DOMAIN}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: grafana
+                port:
+                  number: 3000
