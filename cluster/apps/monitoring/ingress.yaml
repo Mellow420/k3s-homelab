@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host('grafana.schlepper.cloud')
+      priority: 1
+      services:
+        - kind: Service
+          name: kube-prometheus-grafana
+          port: 80
+  tls:
+    secretName: kube-prometheus-grafana-tls
