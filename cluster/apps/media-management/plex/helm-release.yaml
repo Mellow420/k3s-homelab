@@ -33,10 +33,10 @@ spec:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         traefik.ingress.kubernetes.io/router.middlewares: "networking-internal-only@kubernetescrd"
       hosts:
-        - host: "plex.${SECRET_DOMAIN}"
+        - host: plex.${SECRET_DOMAIN}
       tls:
         - hosts:
-            - "plex.${SECRET_DOMAIN}"
+            - plex.${SECRET_DOMAIN}
           secretName: "plex-tls"
     persistence:
       config:
