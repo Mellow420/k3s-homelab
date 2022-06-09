@@ -27,6 +27,8 @@ spec:
     ingress:
       enabled: false
     persistence:
+      config:
+        accessMode: ReadWriteOnce
       transcode:
         storageClass: "nfs-client"
         size: 100Gi
