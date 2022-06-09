@@ -40,10 +40,10 @@ spec:
           secretName: "plex-tls"
     persistence:
       config:
-        storageClass: "managed-nfs-storage"
+        storageClass: "nfs-client"
       transcode:
-        storageClass: "managed-nfs-storage"
+        storageClass: "nfs-client"
         size: 100Gi
       data:
-        storageClass: "managed-nfs-storage"
+        storageClass: "nfs-client"
         size: 10000Gi
