@@ -1,0 +1,49 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kube-plex
+  namespace: default
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kube-plex
+      version: 0.3.1
+      sourceRef:
+        kind: HelmRepository
+        name: kube-plex
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    timezone: Europe/Amsterdam
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-staging"
+        hajimari.io/enable: "true"
+        hajimari.io/icon: "weather-sunset"
+        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        traefik.ingress.kubernetes.io/router.middlewares: "networking-internal-only@kubernetescrd"
+      hosts:
+        - host: "plex.${SECRET_DOMAIN}"
+      tls:
+        - hosts:
+            - "plex.${SECRET_DOMAIN}"
+          secretName: "plex-tls"
+    persistence:
+      config:
+        storageClass: "managed-nfs-storage"
+      transcode:
+        storageClass: "managed-nfs-storage"
+        size: 100Gi
+      data:
+        storageClass: "managed-nfs-storage"
+        size: 10000Gi
