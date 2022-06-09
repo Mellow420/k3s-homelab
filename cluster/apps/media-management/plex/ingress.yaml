@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kube-plex
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    hajimari.io/appName: "plex"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "web"
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    traefik.ingress.kubernetes.io/router.middlewares: "networking-internal-only@kubernetescrd"
+spec:
+  ingressClassName: "traefik"
+  tls:
+    - hosts:
+        - "plex.${SECRET_DOMAIN}"
+      secretName: "kube-plex-tls"
+  rules:
+    - host: "plex.${SECRET_DOMAIN}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kube-plex-kube-plex
+                port:
+                  number: 80
