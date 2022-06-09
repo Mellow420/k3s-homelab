@@ -28,6 +28,7 @@ spec:
       enabled: false
     persistence:
       config:
+        storageClass: "nfs-client"
         accessMode: ReadWriteOnce
       transcode:
         storageClass: "nfs-client"
