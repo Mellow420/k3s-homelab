@@ -28,7 +28,7 @@ spec:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           traefik.ingress.kubernetes.io/router.middlewares: "networking-internal-only@kubernetescrd"
         hosts:
-          - host: "jackett.${SECRET_DOMAIN}"
+          - host: "radarr.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -36,5 +36,5 @@ spec:
                   port: 7878
         tls:
           - hosts:
-              - "jackett.${SECRET_DOMAIN}"
-            secretName: "jackett-tls"
+              - "radarr.${SECRET_DOMAIN}"
+            secretName: "radarr-tls"
