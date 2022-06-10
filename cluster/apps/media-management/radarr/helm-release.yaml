@@ -16,6 +16,11 @@ spec:
   values:
     env:
       TZ: Europe/Amsterdam
+    persistence:
+      media:
+        enabled: true
+        storageClass: "nfs-client"
+        existingClaim: "kube-plex-kube-plex-data"
 
     ingress:
       main:
