@@ -4,7 +4,7 @@ metadata:
   name: transmission-openvpn
   namespace: default
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
     hajimari.io/appName: "transmission"
     hajimari.io/enable: "true"
     hajimari.io/icon: "cloud-download-outline"
