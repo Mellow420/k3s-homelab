@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: qbittorrent
-        image: jovalle/qbittorrent-openvpn:v0.2.1
+        image: jovalle/qbittorrent-openvpn:v0.3.1
         imagePullPolicy: Always
         envFrom:
         - configMapRef:

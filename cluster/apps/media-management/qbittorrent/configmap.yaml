@@ -9,6 +9,7 @@ data:
   PGID: "1000"
   UMASK: "002"
   VPN_ENABLED: "yes"
+  VPN_PROVIDER: "PIA"
   LAN_CIDR: "192.168.1.0/24"
   NAME_SERVERS: "8.8.8.8,8.8.4.4"
   K8S_CLUSTER: "yes"
