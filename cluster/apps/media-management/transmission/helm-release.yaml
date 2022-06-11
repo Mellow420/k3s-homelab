@@ -138,6 +138,9 @@ spec:
       - name: config
         secret:
           secretName: "privatevpn-amsterdam1-udp-1198"
+      - name: dev-tun
+        hostPath:
+          path: "/dev/net/tun"
     securityContext:
       capabilities:
         add:
