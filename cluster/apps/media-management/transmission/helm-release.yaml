@@ -1,0 +1,64 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: transmission-openvpn
+  namespace: default
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: transmission-openvpn
+      version: 0.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: bananaspliff
+        namespace: flux-system
+  values:
+    env:
+      - name: OPENVPN_PROVIDER
+        value: "PIA" # VPN provider. List of supported providers: https://haugene.github.io/docker-transmission-openvpn/supported-providers/
+      - name: OPENVPN_USERNAME
+        valueFrom: # Reference to the secret | openvpn.username
+          secretKeyRef:
+            name: "pia"
+            key: "username"
+      - name: OPENVPN_PASSWORD
+        valueFrom: # Reference to the secret | openvpn.password
+          secretKeyRef:
+            name: "pia"
+            key: "password"
+      - name: OPENVPN_CONFIG
+        value: "Netherlands"
+      - name: TRANSMISSION_DOWNLOAD_DIR
+        value: "/downloads/transmission"
+      - name: TRANSMISSION_WEB_UI
+        value: "flood-for-transmission"
+      - name: PUID
+        value: "1000"
+      - name: PGID
+        value: "1000"
+    service:
+      type: ClusterIP
+      port: 80
+
+    ingress:
+      enabled: false
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        kubernetes.io/tls-acme: "true"
+      path: /
+      hosts:
+        - "transmission.{{SECRET_DOMAIN}}"
+      tls:
+        - secretName: transmission-tls
+          hosts:
+            - "transmission.{{SECRET_DOMAIN}}"
+    volumes:
+      - name: "media-ssd"
+        persistentVolumeClaim:
+          claimName: "kube-plex-kube-plex-data"
+    securityContext:
+      capabilities:
+        add:
+          - NET_ADMIN
