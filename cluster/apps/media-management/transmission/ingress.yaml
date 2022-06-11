@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kube-plex
+  namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    hajimari.io/appName: "transmission"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "cloud-download-outline"
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    traefik.ingress.kubernetes.io/router.middlewares: "networking-internal-only@kubernetescrd"
+spec:
+  ingressClassName: "traefik"
+  tls:
+    - hosts:
+        - "transmission.${SECRET_DOMAIN}"
+      secretName: "transmission-tls"
+  rules:
+    - host: "transmission.${SECRET_DOMAIN}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: transmission-openvpn
+                port:
+                  number: 80
