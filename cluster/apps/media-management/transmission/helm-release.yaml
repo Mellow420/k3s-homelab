@@ -30,6 +30,8 @@ spec:
             key: "password"
       - name: OPENVPN_CONFIG
         value: "netherlands"
+      - name: LOCAL_NETWORK
+        value: 192.168.1.0/24
       - name: TRANSMISSION_DOWNLOAD_DIR
         value: "/downloads/transmission"
       - name: TRANSMISSION_WEB_UI
@@ -43,7 +45,7 @@ spec:
       port: 80
 
     ingress:
-      enabled: true
+      enabled: false
       annotations:
         kubernetes.io/ingress.class: "traefik"
         cert-manager.io/cluster-issuer: "letsencrypt-production"
