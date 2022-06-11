@@ -1,0 +1,14 @@
+---
+# yamllint disable
+apiVersion: v1
+kind: Service
+metadata:
+  name: qbittorrent
+  namespace: default
+spec:
+  selector:
+    app: qbittorrent
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
