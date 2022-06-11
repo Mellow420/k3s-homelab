@@ -55,7 +55,7 @@ spec:
           hosts:
             - "transmission.{{SECRET_DOMAIN}}"
     volumes:
-      - name: "media-ssd"
+      - name: "myvolume"
         persistentVolumeClaim:
           claimName: "kube-plex-kube-plex-data"
     securityContext:
