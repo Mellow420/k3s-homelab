@@ -26,3 +26,4 @@ resources:
   - stakater-charts.yaml
   - traefik-charts.yaml
   - weaveworks-kured-charts.yaml
+  - bananaspliff-charts.yaml
