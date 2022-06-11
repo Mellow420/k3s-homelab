@@ -74,7 +74,7 @@ spec:
           path: /home/mellow/k8s/qbittorrent
       - name: downloads
         nfs:
-          path: /downloads
+          path: /srv/nfs4/k3s/default-kube-plex-kube-plex-data-pvc-1ad88c90-4fbd-42c2-bf3b-ab6603c3b8b9/downloads/
           server: 95.217.203.235
       - hostPath:
           path: /dev/net/tun
