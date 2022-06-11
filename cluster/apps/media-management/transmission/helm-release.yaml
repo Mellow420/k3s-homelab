@@ -134,6 +134,10 @@ spec:
       - name: "myvolume"
         persistentVolumeClaim:
           claimName: "kube-plex-kube-plex-data"
+
+      - name: config
+        secret:
+          secretName: "privatevpn-amsterdam1-udp-1198"
     securityContext:
       capabilities:
         add:
