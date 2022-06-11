@@ -4,6 +4,7 @@ metadata:
   name: transmission-openvpn
   namespace: default
   annotations:
+    metallb.universe.tf/loadBalancerIPs: 192.168.1.223
     cert-manager.io/cluster-issuer: "letsencrypt-production"
     hajimari.io/appName: "transmission"
     hajimari.io/enable: "true"
