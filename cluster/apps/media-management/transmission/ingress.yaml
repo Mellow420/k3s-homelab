@@ -26,4 +26,4 @@ spec:
               service:
                 name: transmission-openvpn
                 port:
-                  number: 9091
+                  number: 80
