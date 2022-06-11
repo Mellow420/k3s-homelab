@@ -5,3 +5,4 @@ resources:
   - plex
   - jackett
   - radarr
+  - transmission
