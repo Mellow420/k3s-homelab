@@ -29,7 +29,7 @@ spec:
             name: "pia"
             key: "password"
       - name: OPENVPN_CONFIG
-        value: "Netherlands"
+        value: "netherlands"
       - name: TRANSMISSION_DOWNLOAD_DIR
         value: "/downloads/transmission"
       - name: TRANSMISSION_WEB_UI
