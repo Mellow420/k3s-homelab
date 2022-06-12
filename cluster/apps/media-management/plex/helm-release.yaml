@@ -23,7 +23,7 @@ spec:
     remediation:
       retries: 3
   values:
-    claimtoken: "claim-K4aysC_wkPkvnnmsJkdx"
+    claimtoken: "claim-zGGAjE7qyUowVVXWYtRt"
     timezone: Europe/Amsterdam
     ingress:
       enabled: false
