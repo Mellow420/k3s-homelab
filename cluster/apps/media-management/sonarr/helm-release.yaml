@@ -1,0 +1,49 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: sonarr
+  namespace: default
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: sonarr
+      version: 16.2.3
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+  values:
+    env:
+      TZ: Europe/Amsterdam
+    persistence:
+      config:
+        enabled: true
+        storageClass: "local-path"
+      media:
+        enabled: true
+        storageClass: "nfs-client"
+        existingClaim: "kube-plex-kube-plex-data"
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "traefik"
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-staging"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "radar"
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          traefik.ingress.kubernetes.io/router.middlewares: "networking-internal-only@kubernetescrd"
+        hosts:
+          - host: "sonarr.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  port: 8989
+        tls:
+          - hosts:
+              - "sonarr.${SECRET_DOMAIN}"
+            secretName: "sonarr-tls"

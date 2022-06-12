@@ -36,3 +36,8 @@ spec:
       data:
         storageClass: "nfs-client"
         size: 10000Gi
+    service:
+      type: LoadBalancer
+      port: 32400
+      nodePort: 32400
+      LoadbalancerIP: 192.168.1.224
