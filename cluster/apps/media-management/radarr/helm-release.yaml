@@ -17,6 +17,9 @@ spec:
     env:
       TZ: Europe/Amsterdam
     persistence:
+      config:
+        enabled: true
+        storageClass: "local-path"
       media:
         enabled: true
         storageClass: "nfs-client"
