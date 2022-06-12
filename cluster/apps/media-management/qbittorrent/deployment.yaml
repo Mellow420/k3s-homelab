@@ -28,6 +28,17 @@ spec:
         - secretRef:
             name: vpn-credentials
             optional: false
+        env:
+        - name: VPN_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: vpn-credentials
+              key: username
+        - name: VPN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: vpn-credentials
+              key: password
         ports:
         - containerPort: 8080
         - containerPort: 8999
