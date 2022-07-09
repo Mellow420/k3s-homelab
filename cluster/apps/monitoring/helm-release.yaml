@@ -15,3 +15,8 @@ spec:
         name: prometheus-community-charts
         namespace: flux-system
       interval: 5m
+  values:
+    prometheus:
+      prometheusSpec:
+        podMonitorNamespaceSelector:
+          any: true
