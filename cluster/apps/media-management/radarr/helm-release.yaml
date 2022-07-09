@@ -16,6 +16,8 @@ spec:
   values:
     env:
       TZ: Europe/Amsterdam
+    metrics:
+      enabled: True
     persistence:
       config:
         enabled: true
