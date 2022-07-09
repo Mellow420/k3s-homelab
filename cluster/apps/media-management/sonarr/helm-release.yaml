@@ -17,6 +17,11 @@ spec:
   values:
     env:
       TZ: Europe/Amsterdam
+    metrics:
+      enabled: true
+      serviceMonitor:
+        labels:
+          release: prometheus-stack
     persistence:
       config:
         enabled: true
